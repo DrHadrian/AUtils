@@ -16,11 +16,9 @@ fun listener(){
     listen<PlayerPortalEvent> {
         if (!settings.alowNether && it.to.world.environment == World.Environment.NETHER){
             it.isCancelled = true
-            it.player.sendMessage("${prfixes.plugin} ${col("red")}der Nether ist aktuell Deaktiviert!!!")
         }
         if (!settings.alowEnd && it.to.world.environment == World.Environment.THE_END){
             it.isCancelled = true
-            it.player.sendMessage("${prfixes.plugin} ${col("red")}das End ist aktuell Deaktiviert!!!")
         }
     }
     listen<PlayerJoinEvent> {
