@@ -5,6 +5,7 @@ import net.appleogames.autils.settings.settings
 import net.appleogames.autils.settings.start
 import net.appleogames.autils.utils.Commands
 import net.appleogames.autils.utils.listener
+import net.appleogames.autils.utils.viewDistanz
 import net.axay.kspigot.chat.col
 import net.axay.kspigot.main.KSpigot
 import net.appleogames.autils.settings.save as saveConfig
@@ -31,7 +32,4 @@ class InternalMainClass : KSpigot() {
         settings.save()
         saveConfig()
     }
-}
-fun prefix(): String{
-    return "${col("dark_gray")}[${col("dark_aqua")}Server${col("dark_gray")}] ${col("white")}"
 }

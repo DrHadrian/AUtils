@@ -1,5 +1,6 @@
 package net.appleogames.autils.settings
 
+import net.appleogames.autils.colors
 import net.appleogames.autils.settings.settings.alowEnd
 import net.axay.kspigot.chat.col
 import net.axay.kspigot.items.flag
@@ -10,6 +11,7 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import net.appleogames.autils.settings.settings.alowNether
+import net.appleogames.autils.settings.settings.viewDistanz
 
 object SettingsDisplyItem {
     val back = itemStack(Material.RED_STAINED_GLASS_PANE) {
@@ -33,7 +35,7 @@ object SettingsDisplyItem {
             return itemStack(Material.OBSIDIAN){
                 amount = 1
                 meta {
-                    name = "${col("gray")}Der Nether ist " +
+                    name = "${col("white")}Der ${col(colors.akzent)}Nether ${col("white")}ist " +
                             if (alowNether) {
                                     "${col("green")}aktiviert"
                                 } else {
@@ -47,12 +49,21 @@ object SettingsDisplyItem {
             return itemStack(Material.END_STONE){
                 amount = 1
                 meta {
-                    name = "${col("gray")}Das End ist " +
+                    name = "${col("white")}Das ${col(colors.akzent)}End${col("white")} ist " +
                             if (alowEnd) {
                                 "${col("green")}aktiviert"
                             } else {
                                 "${col("red")}deaktiviert"
                             }
+                    flag(ItemFlag.HIDE_ATTRIBUTES)
+                }
+            }
+        }
+        fun viewDistanz(): ItemStack{
+            return itemStack(Material.SPYGLASS){
+                amount = 1
+                meta {
+                    name = "${col("white")}Die ${col(colors.akzent)}Sichtweite ${col("white")}beträgt $viewDistanz Chunks. "
                     flag(ItemFlag.HIDE_ATTRIBUTES)
                 }
             }
@@ -72,7 +83,7 @@ object SettingsDisplyItem {
             return itemStack(Material.MOSSY_COBBLESTONE){
                 amount = 1
                 meta {
-                    name = "${col("gray")}Only Cave ist " +
+                    name = "${col(colors.akzent)}Only Cave ${col("white")}ist " +
                             if (settings.challenges.onlyCave) {
                                 "${col("green")}aktiviert"
                             } else {

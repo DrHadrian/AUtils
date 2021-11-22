@@ -11,17 +11,21 @@ object settings {
 
     var alowNether = true
     var alowEnd = true
+    var viewDistanz = 8
+
     object challenges{
         var onlyCave = false
     }
     fun save(){
         InternalMainClass.INSTANCE.config.set("settungs.alowNether", alowNether)
         InternalMainClass.INSTANCE.config.set("settungs.alowEnd", alowEnd)
+        InternalMainClass.INSTANCE.config.set("settungs.viewDistanz", viewDistanz)
         InternalMainClass.INSTANCE.config.set("settungs.challenges.onlyCave", challenges.onlyCave)
     }
     fun load(){
         if (configuration.contains("settungs.alowNether")){alowNether = configuration.getBoolean("settungs.alowNether")}
         if (configuration.contains("settungs.alowEnd")){alowEnd = configuration.getBoolean("settungs.alowEnd")}
+        if (configuration.contains("settungs.viewDistanz")){viewDistanz = configuration.getInt("settungs.viewDistanz")}
         if (configuration.contains("settungs.challenges.onlyCave")){challenges.onlyCave = configuration.getBoolean("settungs.challenges.onlyCave")}
     }
 }

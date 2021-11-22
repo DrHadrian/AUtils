@@ -1,7 +1,7 @@
 package net.appleogames.autils.utils
 
 import net.appleogames.autils.colors
-import net.appleogames.autils.prefix
+import net.appleogames.autils.prfixes
 import net.appleogames.autils.settings.SettingsGUI
 import net.axay.kspigot.chat.col
 import net.axay.kspigot.commands.command
@@ -14,7 +14,7 @@ class Commands {
             if (this.player.isOp){
                 this.player.openGUI(SettingsGUI().gui)
             }else{
-                this.player.sendMessage("${prefix()}${col("red")}Du brauchst ${col(colors.admin)}Admin-Rechte${col("red")}, um diesen command auszuführen")
+                this.player.sendMessage("${prfixes.plugin}${col("red")}Du brauchst ${col(colors.admin)}Admin-Rechte${col("red")}, um diesen command auszuführen")
             }
         }
     }
