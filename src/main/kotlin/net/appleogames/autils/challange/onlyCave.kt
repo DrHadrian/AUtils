@@ -23,36 +23,41 @@ fun onlyCave(){
     var inOcean: Boolean
     task(
         delay = 20,
-        period = 20
+        period = 20,
+        endCallback = {onlinePlayers.forEach { it.actionBar("")}}
     )
     {
-        if (!settings.challenges.onlyCave){onlinePlayers.forEach{it.actionBar("")}; it.cancel()}
-        onlinePlayers.forEach {
-            inOcean = false
-            if((oceanChack(it.location.block) || oceanChack(Location(it.location.world, it.location.x, it.location.y + 1, it.location.z, 0.0F, 0.0F).block)) && it.location.y < 62){
-                inOcean = true
-                for (y in it.location.y.toInt()..62){
-                    if (!oceanChack(Location(it.location.world, it.location.x, y.toDouble(), it.location.z, 0.0F, 0.0F).block)){
-                        inOcean = false
-                        break
+        if (!settings.challenges.onlyCave){
+            onlinePlayers.forEach{it.actionBar("")}
+            it.cancel()
+        }else{
+            onlinePlayers.forEach {
+                inOcean = false
+                if((oceanChack(it.location.block) || oceanChack(Location(it.location.world, it.location.x, it.location.y + 1, it.location.z, 0.0F, 0.0F).block)) && it.location.y < 62){
+                    inOcean = true
+                    for (y in it.location.y.toInt()..62){
+                        if (!oceanChack(Location(it.location.world, it.location.x, y.toDouble(), it.location.z, 0.0F, 0.0F).block)){
+                            inOcean = false
+                            break
+                        }
                     }
                 }
-            }
-            if (!inOcean){
-                if (it.location.block.lightFromSky >= (14).toByte()){
-                    it.actionBar("${col("red")}Du bist in keiner Cave!")
-                    it.damage(4.0)
-                }else if (it.location.block.lightFromSky == (0).toByte()) {
-                    it.actionBar("")
+                if (!inOcean){
+                    if (it.location.block.lightFromSky >= (14).toByte()){
+                        it.actionBar("${col("red")}Du bist in keiner Cave!")
+                        it.damage(4.0)
+                    }else if (it.location.block.lightFromSky == (0).toByte()) {
+                        it.actionBar("")
+                    }else{
+                        it.actionBar("${col("yellow")}Du näherst dich einem Ausgan einer Cave!")
+                        it.damage((it.location.block.lightFromSky.toDouble()/4))
+                    }
                 }else{
-                    it.actionBar("${col("yellow")}Du näherst dich einem Ausgan einer Cave!")
-                    it.damage((it.location.block.lightFromSky.toDouble()/4))
+                    ocian(it)
                 }
-            }else{
-                ocian(it)
             }
         }
-    }
+        }
 }
 fun oceanChack(block: Block): Boolean{
     val type = block.type
@@ -75,11 +80,10 @@ fun oceanChack(block: Block): Boolean{
     }
 }
 fun ocian(player: Player){
-    val playerDeath =
-    listen<PlayerDeathEvent> {if(it.entityType == EntityType.PLAYER){val playerDeath = it.entity.player}}
+    val playerDeath = listen<PlayerDeathEvent> {if(it.entityType == EntityType.PLAYER){val playerDeath = it.entity.player}}
     task(
-        delay = 0,
-        period = 0
+        delay = 20,
+        period = 20
     ) {
         player.actionBar("${col("blue")}Du bist in einem Ocean!")
         player.damage(4.0)

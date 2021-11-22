@@ -10,6 +10,7 @@ import net.appleogames.autils.settings.settings.challenges.onlyCave as onlyCaveS
 
 import net.axay.kspigot.chat.col
 import net.axay.kspigot.chat.sendMessage
+import net.axay.kspigot.extensions.bukkit.actionBar
 import net.axay.kspigot.gui.GUIType
 import net.axay.kspigot.gui.Slots
 import net.axay.kspigot.gui.kSpigotGUI
@@ -20,8 +21,8 @@ class SettingsGUI {
         title = "Settings"
         defaultPage = 0
         page(0){
-            this.pageChanger(Slots.RowTwoSlotThree, SettingsDisplyItem.generel.generel(), 1){}
-            this.pageChanger(Slots.RowTwoSlotFive, SettingsDisplyItem.challenges.challenges(), 2){}
+            this.pageChanger(Slots.RowTwoSlotFour, SettingsDisplyItem.generel.generel(), 1){}
+            this.pageChanger(Slots.RowTwoSlotSix, SettingsDisplyItem.challenges.challenges(), 2){}
         }
 
         // ---------- World -----------
@@ -67,7 +68,7 @@ class SettingsGUI {
             }
 
             // view Distanz
-            button(Slots.RowTwoSlotSix, SettingsDisplyItem.generel.viewDistanz()){
+            button(Slots.RowTwoSlotSeven, SettingsDisplyItem.generel.viewDistanz()){
                 if (it.bukkitEvent.isLeftClick){
                     if (settings.viewDistanz < 32){
                         settings.viewDistanz++
