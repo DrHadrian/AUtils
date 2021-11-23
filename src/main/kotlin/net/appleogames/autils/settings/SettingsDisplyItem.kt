@@ -3,15 +3,12 @@ package net.appleogames.autils.settings
 import net.appleogames.autils.colors
 import net.appleogames.autils.settings.settings.alowEnd
 import net.axay.kspigot.chat.col
-import net.axay.kspigot.items.flag
-import net.axay.kspigot.items.itemStack
-import net.axay.kspigot.items.meta
-import net.axay.kspigot.items.name
 import org.bukkit.Material
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import net.appleogames.autils.settings.settings.alowNether
 import net.appleogames.autils.settings.settings.viewDistanz
+import net.axay.kspigot.items.*
 
 object SettingsDisplyItem {
     val back = itemStack(Material.RED_STAINED_GLASS_PANE) {
@@ -35,7 +32,7 @@ object SettingsDisplyItem {
             return itemStack(Material.OBSIDIAN){
                 amount = 1
                 meta {
-                    name = "${col("white")}Der ${col(colors.akzent)}Nether ${col("white")}ist " +
+                    name = "${col(colors.main)}Der ${col(colors.akzent)}Nether ${col(colors.main)}ist " +
                             if (alowNether) {
                                     "${col("green")}aktiviert"
                                 } else {
@@ -49,7 +46,7 @@ object SettingsDisplyItem {
             return itemStack(Material.END_STONE){
                 amount = 1
                 meta {
-                    name = "${col("white")}Das ${col(colors.akzent)}End${col("white")} ist " +
+                    name = "${col(colors.main)}Das ${col(colors.akzent)}End${col(colors.main)} ist " +
                             if (alowEnd) {
                                 "${col("green")}aktiviert"
                             } else {
@@ -63,7 +60,16 @@ object SettingsDisplyItem {
             return itemStack(Material.SPYGLASS){
                 amount = 1
                 meta {
-                    name = "${col("white")}Die ${col(colors.akzent)}Sichtweite ${col("white")}beträgt $viewDistanz Chunks. "
+                    name = "${col(colors.main)}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}beträgt $viewDistanz Chunks. "
+                    flag(ItemFlag.HIDE_ATTRIBUTES)
+                    addLore {
+                        +"${col(colors.second)}Left Click to Up"
+                        +"${col(colors.second)}Right Click to Down"
+                        +""
+                        +"${col(colors.akzent)}Optimized Defaults:"
+                        +"${col(colors.second)}Shift Left Click: 6 Chunks - for Minigames"
+                        +"${col(colors.second)}Shift Right Click: 12 Chunks - for Survival"
+                    }
                     flag(ItemFlag.HIDE_ATTRIBUTES)
                 }
             }
@@ -83,7 +89,7 @@ object SettingsDisplyItem {
             return itemStack(Material.MOSSY_COBBLESTONE){
                 amount = 1
                 meta {
-                    name = "${col(colors.akzent)}Only Cave ${col("white")}ist " +
+                    name = "${col(colors.akzent)}Only Cave ${col(colors.main)}ist " +
                             if (settings.challenges.onlyCave) {
                                 "${col("green")}aktiviert"
                             } else {

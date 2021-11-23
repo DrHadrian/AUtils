@@ -9,12 +9,10 @@ import net.appleogames.autils.utils.viewDistanz
 import net.appleogames.autils.settings.settings.challenges.onlyCave as onlyCaveSetting
 
 import net.axay.kspigot.chat.col
-import net.axay.kspigot.chat.sendMessage
-import net.axay.kspigot.extensions.bukkit.actionBar
 import net.axay.kspigot.gui.GUIType
 import net.axay.kspigot.gui.Slots
 import net.axay.kspigot.gui.kSpigotGUI
-import net.spurkomet.adrian.utils.onlyCave
+import net.appleogames.autils.challange.onlyCave
 
 class SettingsGUI {
     val gui = kSpigotGUI(GUIType.THREE_BY_NINE){
@@ -32,16 +30,16 @@ class SettingsGUI {
                 if (alowNether) {
                     alowNether = false
                     it.player.sendMessage(
-                        "${prefix}${col("gray")}Der Nether " +
-                                "${col("white")}wurde " +
-                                "${col("red")}deaktiviert${col("white")}."
+                        "${prefix}Der ${col(colors.akzent)}Nether " +
+                                "${col(colors.main)}wurde " +
+                                "${col("red")}deaktiviert${col(colors.main)}."
                     )
                 } else {
                     alowNether = true
                     it.player.sendMessage(
                         "${prefix}Der ${col(colors.akzent)}Nether " +
-                                "${col("white")}wurde " +
-                                "${col("green")}aktiviert${col("white")}."
+                                "${col(colors.main)}wurde " +
+                                "${col("green")}aktiviert${col(colors.main)}."
                     )
                 }
                 it.bukkitEvent.currentItem = SettingsDisplyItem.generel.alowNether()
@@ -53,15 +51,15 @@ class SettingsGUI {
                     alowEnd = false
                     it.player.sendMessage(
                         "${prefix}Das ${col(colors.akzent)}End " +
-                                "${col("white")}wurde " +
-                                "${col("red")}deaktiviert${col("white")}."
+                                "${col(colors.main)}wurde " +
+                                "${col("red")}deaktiviert${col(colors.main)}."
                     )
                 } else {
                     alowEnd = true
                     it.player.sendMessage(
-                        "${prefix}${col("gray")}Das End " +
-                                "${col("white")}wurde " +
-                                "${col("green")}aktiviert${col("white")}."
+                        "${prefix}Das ${col(colors.akzent)}End " +
+                                "${col(colors.main)}wurde " +
+                                "${col("green")}aktiviert${col(colors.main)}."
                     )
                 }
                 it.bukkitEvent.currentItem = SettingsDisplyItem.generel.alowEnd()
@@ -69,18 +67,31 @@ class SettingsGUI {
 
             // view Distanz
             button(Slots.RowTwoSlotSeven, SettingsDisplyItem.generel.viewDistanz()){
-                if (it.bukkitEvent.isLeftClick){
-                    if (settings.viewDistanz < 32){
-                        settings.viewDistanz++
+                if (it.bukkitEvent.isShiftClick) {
+                    if (it.bukkitEvent.isLeftClick) {
+                        settings.viewDistanz = 12
                         viewDistanz()
-                        it.player.sendMessage("${prfixes.plugin}Die ${col(colors.akzent)}Sichtweite ${col("white")}wurde auf ${settings.viewDistanz} erhöht")
+                        it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistanz} Chunks gesetzt.")
                     }
-                }
-                if (it.bukkitEvent.isRightClick){
-                    if (settings.viewDistanz > 2){
-                        settings.viewDistanz--
+                    else if (it.bukkitEvent.isRightClick) {
+                        settings.viewDistanz = 6
                         viewDistanz()
-                        it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col("white")}wurde auf ${settings.viewDistanz} gesenkt")
+                        it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistanz} Chunks gesetzt.")
+                    }
+                }else{
+                    if (it.bukkitEvent.isLeftClick){
+                        if (settings.viewDistanz < 32){
+                            settings.viewDistanz++
+                            viewDistanz()
+                            it.player.sendMessage("${prfixes.plugin}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistanz} Chunks erhöht.")
+                        }
+                    }
+                    else if (it.bukkitEvent.isRightClick){
+                        if (settings.viewDistanz > 2){
+                            settings.viewDistanz--
+                            viewDistanz()
+                            it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistanz} Chunks gesenkt.")
+                        }
                     }
                 }
                 it.bukkitEvent.currentItem = SettingsDisplyItem.generel.viewDistanz()
@@ -96,16 +107,16 @@ class SettingsGUI {
                     onlyCaveSetting = false
                     it.player.sendMessage(
                         "${prefix}${col(colors.akzent)}Only Cave " +
-                                "${col("white")}wurde " +
-                                "${col("red")}deaktiviert${col("white")}."
+                                "${col(colors.main)}wurde " +
+                                "${col("red")}deaktiviert${col(colors.main)}."
                     )
                 } else {
                     onlyCaveSetting = true
                     onlyCave()
                     it.player.sendMessage(
                         "${prefix}${col(colors.akzent)}Only Cave " +
-                                "${col("white")}wurde " +
-                                "${col("green")}aktiviert${col("white")}."
+                                "${col(colors.main)}wurde " +
+                                "${col("green")}aktiviert${col(colors.main)}."
                     )
                 }
                 it.bukkitEvent.currentItem = SettingsDisplyItem.challenges.onlyCave()

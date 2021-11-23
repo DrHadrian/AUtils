@@ -23,13 +23,9 @@ fun listener(){
         }
     }
     listen<PlayerJoinEvent> {
-        it.joinMessage(Component.text("${col("dark_gray")}[${col("dark_green")}+${col("dark_gray")}] ${col(if (it.player.isOp) colors.admin else "white")}${it.player.name}"))
-
-        /*it.player.title( "${col("yellow")}Willkommen! ${if(it.player.isOp) col("aqua") else col("white")}${it.player.name}",
-            "${col ("dark_aqua")}SUtils Server | powered by ${col("aqua")}Kot${col("white")}lin",
-            4, 40, 10)*/
+        it.joinMessage(Component.text("${col(colors.main)}(${col("dark_green")}+${col(colors.main)}) ${col(if (it.player.isOp) colors.admin else colors.main)}${it.player.name}"))
     }
     listen<PlayerQuitEvent> {
-        it.quitMessage(Component.text("${col("dark_gray")}[${col("dark_red")}-${col("dark_gray")}] ${col(if (it.player.isOp) colors.admin else "withe")}${it.player.name}"))
+        it.quitMessage(Component.text("${col(colors.main)}(${col("dark_red")}-${col(colors.main)}) ${col(if (it.player.isOp) colors.admin else colors.main)}${it.player.name}"))
     }
 }

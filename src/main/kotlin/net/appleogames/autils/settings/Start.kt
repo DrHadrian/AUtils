@@ -1,9 +1,11 @@
 package net.appleogames.autils.settings
 
 import net.appleogames.autils.utils.viewDistanz
-import net.spurkomet.adrian.utils.onlyCave
+import net.appleogames.autils.challange.onlyCave
 
 fun start(){
-    if(settings.challenges.onlyCave){onlyCave()}
+    if(settings.challenges.onlyCave){
+        onlyCave()
+    }
     viewDistanz()
 }
