@@ -1,11 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.5.21"
+    kotlin("jvm") version "1.6.0"
 }
 
 group = "net.appleogames"
-version = "1.0"
+version = "1.18-Snapshot"
 
 repositories {
     mavenCentral()

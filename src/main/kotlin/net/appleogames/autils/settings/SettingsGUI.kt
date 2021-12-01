@@ -66,19 +66,18 @@ class SettingsGUI {
             }
 
             // view Distanz
-            button(Slots.RowTwoSlotSeven, SettingsDisplyItem.generel.viewDistanz()){
-                if (it.bukkitEvent.isShiftClick) {
+            button(Slots.RowTwoSlotSeven, SettingsDisplyItem.generel.viewDistanz()) {
+                if (it.bukkitEvent.isShiftClick){
                     if (it.bukkitEvent.isLeftClick) {
-                        settings.viewDistanz = 12
+                        settings.viewDistanz = 16
+                        viewDistanz()
+                        it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistanz} Chunks gesetzt.")
+                    } else if (it.bukkitEvent.isRightClick) {
+                        settings.viewDistanz = 8
                         viewDistanz()
                         it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistanz} Chunks gesetzt.")
                     }
-                    else if (it.bukkitEvent.isRightClick) {
-                        settings.viewDistanz = 6
-                        viewDistanz()
-                        it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistanz} Chunks gesetzt.")
-                    }
-                }else{
+            }else{
                     if (it.bukkitEvent.isLeftClick){
                         if (settings.viewDistanz < 32){
                             settings.viewDistanz++

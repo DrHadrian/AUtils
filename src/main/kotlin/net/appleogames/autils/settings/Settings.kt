@@ -1,6 +1,7 @@
 package net.appleogames.autils.settings
 
 import net.appleogames.autils.InternalMainClass
+import net.axay.kspigot.extensions.server
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 
@@ -11,7 +12,7 @@ object settings {
 
     var alowNether = true
     var alowEnd = true
-    var viewDistanz = 8
+    var viewDistanz = server.viewDistance
 
     object challenges{
         var onlyCave = false
