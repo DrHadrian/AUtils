@@ -69,11 +69,11 @@ class SettingsGUI {
             button(Slots.RowTwoSlotSeven, SettingsDisplyItem.generel.viewDistanz()) {
                 if (it.bukkitEvent.isShiftClick){
                     if (it.bukkitEvent.isLeftClick) {
-                        settings.viewDistanz = 16
+                        settings.viewDistanz = 12
                         viewDistanz()
                         it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistanz} Chunks gesetzt.")
                     } else if (it.bukkitEvent.isRightClick) {
-                        settings.viewDistanz = 8
+                        settings.viewDistanz = 6
                         viewDistanz()
                         it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistanz} Chunks gesetzt.")
                     }
