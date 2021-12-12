@@ -5,10 +5,7 @@ import net.appleogames.autils.settings.settings
 import net.appleogames.autils.settings.start
 import net.appleogames.autils.utils.Commands
 import net.appleogames.autils.utils.listener
-import net.appleogames.autils.utils.viewDistanz
-import net.axay.kspigot.chat.col
 import net.axay.kspigot.main.KSpigot
-import net.appleogames.autils.settings.save as saveConfig
 
 class InternalMainClass : KSpigot() {
 

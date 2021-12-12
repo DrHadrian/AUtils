@@ -10,4 +10,5 @@ object colors{
     val akzent = "aqua"
     val main = "gray"
     val second = "dark_gray"
+    val error = "red"
 }

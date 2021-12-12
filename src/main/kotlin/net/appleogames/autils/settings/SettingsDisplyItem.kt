@@ -7,7 +7,7 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import net.appleogames.autils.settings.settings.alowNether
-import net.appleogames.autils.settings.settings.viewDistanz
+import net.appleogames.autils.settings.settings.viewDistance
 import net.axay.kspigot.items.*
 
 object SettingsDisplyItem {
@@ -60,7 +60,7 @@ object SettingsDisplyItem {
             return itemStack(Material.SPYGLASS){
                 amount = 1
                 meta {
-                    name = "${col(colors.main)}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}beträgt $viewDistanz Chunks. "
+                    name = "${col(colors.main)}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}beträgt $viewDistance Chunks. "
                     flag(ItemFlag.HIDE_ATTRIBUTES)
                     addLore {
                         +"${col(colors.second)}Left Click to Up"

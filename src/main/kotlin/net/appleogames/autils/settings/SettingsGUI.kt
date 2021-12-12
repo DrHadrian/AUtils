@@ -13,6 +13,11 @@ import net.axay.kspigot.gui.GUIType
 import net.axay.kspigot.gui.Slots
 import net.axay.kspigot.gui.kSpigotGUI
 import net.appleogames.autils.challange.onlyCave
+import net.axay.kspigot.extensions.broadcast
+import net.axay.kspigot.items.*
+import org.bukkit.Material
+import org.bukkit.inventory.ItemFlag
+import org.bukkit.inventory.ItemStack
 
 class SettingsGUI {
     val gui = kSpigotGUI(GUIType.THREE_BY_NINE){
@@ -66,35 +71,38 @@ class SettingsGUI {
             }
 
             // view Distanz
-            button(Slots.RowTwoSlotSeven, SettingsDisplyItem.generel.viewDistanz()) {
-                if (it.bukkitEvent.isShiftClick){
-                    if (it.bukkitEvent.isLeftClick) {
-                        settings.viewDistanz = 12
-                        viewDistanz()
-                        it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistanz} Chunks gesetzt.")
-                    } else if (it.bukkitEvent.isRightClick) {
-                        settings.viewDistanz = 6
-                        viewDistanz()
-                        it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistanz} Chunks gesetzt.")
-                    }
-            }else{
-                    if (it.bukkitEvent.isLeftClick){
-                        if (settings.viewDistanz < 32){
-                            settings.viewDistanz++
+            placeholder(Slots.RowTwoSlotSeven, itemStack(Material.SPYGLASS){amount = 1; meta {name = "${col(colors.akzent)}Sichtweite ${col(colors.error)}is temporary disabled!"}})
+            /*button(Slots.RowTwoSlotSeven, SettingsDisplyItem.generel.viewDistanz()) {
+                    if (it.bukkitEvent.isShiftClick){
+                        if (it.bukkitEvent.isLeftClick) {
+                            settings.viewDistance = 12
                             viewDistanz()
-                            it.player.sendMessage("${prfixes.plugin}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistanz} Chunks erhöht.")
+                            it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistance} Chunks gesetzt.")
+                        } else if (it.bukkitEvent.isRightClick) {
+                            settings.viewDistance = 6
+                            viewDistanz()
+                            it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistance} Chunks gesetzt.")
+                        }
+                    }else{
+                        if (it.bukkitEvent.isLeftClick){
+                            if (settings.viewDistance < 32){
+                                settings.viewDistance++
+                                viewDistanz()
+                                it.player.sendMessage("${prfixes.plugin}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistance} Chunks erhöht.")
+                                broadcast("${settings.viewDistance}")
+                            }
+                        }
+                        else if (it.bukkitEvent.isRightClick){
+                            if (settings.viewDistance > 2){
+                                settings.viewDistance--
+                                viewDistanz()
+                                it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistance} Chunks gesenkt.")
+                                broadcast("${settings.viewDistance}")
+                            }
                         }
                     }
-                    else if (it.bukkitEvent.isRightClick){
-                        if (settings.viewDistanz > 2){
-                            settings.viewDistanz--
-                            viewDistanz()
-                            it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistanz} Chunks gesenkt.")
-                        }
-                    }
-                }
-                it.bukkitEvent.currentItem = SettingsDisplyItem.generel.viewDistanz()
-            }
+                    it.bukkitEvent.currentItem = SettingsDisplyItem.generel.viewDistanz()
+                }*/
 
             // ------- Back -------
             this.pageChanger(Slots.RowOneSlotNine, SettingsDisplyItem.back, 0){}

@@ -6,5 +6,5 @@ import org.bukkit.Bukkit
 import org.bukkit.World
 
 fun viewDistanz(){
-    worlds.forEach{it.viewDistance = settings.viewDistanz}
+    worlds.forEach{it.viewDistance = settings.viewDistance}
 }

@@ -14,7 +14,7 @@ class Commands {
             if (this.player.isOp){
                 this.player.openGUI(SettingsGUI().gui)
             }else{
-                this.player.sendMessage("${prfixes.plugin}${col("red")}Du brauchst ${col(colors.admin)}Admin-Rechte${col("red")}, um diesen command auszuführen")
+                this.player.sendMessage("${prfixes.plugin}${col(colors.error)}You don't have the Permission to execute this Command! ${col(colors.second)}- you need ${col(colors.admin)}Admin${col(colors.error)} you have this.player.permission")
             }
         }
     }

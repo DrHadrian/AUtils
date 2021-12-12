@@ -5,4 +5,5 @@ description: Utils von Adrian und SpurKomet für appleogames
 api-version: 1.17
 authors: [Adrian, SpurKomet]
 libraries:
-  - "net.axay:kspigot:1.17.4"
+  - "net.axay:kspigot:1.18.0"
+  - "org.jetbrains.kotlin:kotlin-stdlib:1.6.0"
