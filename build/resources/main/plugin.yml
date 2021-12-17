@@ -1,9 +1,0 @@
-main: net.appleogames.autils.InternalMainClass
-name: AUtils
-version: 1.4.1
-description: Utils von Adrian und SpurKomet für appleogames
-api-version: 1.17
-authors: [Adrian, SpurKomet]
-libraries:
-  - "net.axay:kspigot:1.18.0"
-  - "org.jetbrains.kotlin:kotlin-stdlib:1.6.0"
