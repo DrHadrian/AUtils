@@ -7,12 +7,16 @@ import net.axay.kspigot.extensions.bukkit.actionBar
 import net.axay.kspigot.extensions.onlinePlayers
 import net.axay.kspigot.runnables.task
 import net.appleogames.autils.challange.onlyCave.playerIsInOcian
+import net.appleogames.autils.colors
+import net.appleogames.autils.prfixes
+import net.axay.kspigot.extensions.events.cancel
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.PlayerDeathEvent
+import org.bukkit.event.inventory.PrepareItemCraftEvent
 import org.bukkit.event.player.PlayerQuitEvent
 
 object onlyCave{
@@ -20,6 +24,14 @@ object onlyCave{
 }
 
     fun onlyCave(){
+        listen<PrepareItemCraftEvent> {
+            if(settings.challenges.onlyCave){
+                if (it.inventory.result?.type == Material.TINTED_GLASS){
+                    it.cancel()
+                    it.view.player.sendMessage("${prfixes.plugin}${col(colors.error)}Tinted Glass ist Verboten!")
+                }
+            }
+        }
         var inOcean: Boolean
         var player: Player
         var playerIsInArray: Boolean

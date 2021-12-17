@@ -17,6 +17,7 @@ object settings {
     object challenges{
         var onlyCave = false
     }
+
     fun save(){
         InternalMainClass.INSTANCE.config.set("settungs.alowNether", alowNether)
         InternalMainClass.INSTANCE.config.set("settungs.alowEnd", alowEnd)
