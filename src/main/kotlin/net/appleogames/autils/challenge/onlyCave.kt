@@ -1,4 +1,4 @@
-package net.appleogames.autils.challange
+package net.appleogames.autils.challenge
 
 import net.appleogames.autils.settings.settings
 import net.axay.kspigot.chat.col
@@ -6,12 +6,13 @@ import net.axay.kspigot.event.listen
 import net.axay.kspigot.extensions.bukkit.actionBar
 import net.axay.kspigot.extensions.onlinePlayers
 import net.axay.kspigot.runnables.task
-import net.appleogames.autils.challange.onlyCave.playerIsInOcian
+import net.appleogames.autils.challenge.onlyCave.playerIsInOcian
 import net.appleogames.autils.colors
 import net.appleogames.autils.prfixes
 import net.axay.kspigot.extensions.events.cancel
 import org.bukkit.Location
 import org.bukkit.Material
+import org.bukkit.WeatherType
 import org.bukkit.block.Block
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
@@ -63,7 +64,7 @@ object onlyCave{
                         }else if (it.location.block.lightFromSky == (0).toByte()) {
                             it.actionBar("")
                         }else{
-                            it.actionBar("${col("yellow")}Du näherst dich einem Ausgan einer Cave!")
+                            it.actionBar("${col("yellow")}Du näherst dich einem Ausgang einer Cave!")
                             it.damage((it.location.block.lightFromSky.toDouble()/4))
                         }
                     }else{

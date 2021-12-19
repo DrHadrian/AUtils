@@ -1,23 +1,18 @@
 package net.appleogames.autils.settings
 
 import net.appleogames.autils.colors
-import net.appleogames.autils.prfixes
 import net.appleogames.autils.prfixes.plugin as prefix
 import net.appleogames.autils.settings.settings.alowEnd
 import net.appleogames.autils.settings.settings.alowNether
-import net.appleogames.autils.utils.viewDistanz
 import net.appleogames.autils.settings.settings.challenges.onlyCave as onlyCaveSetting
 
 import net.axay.kspigot.chat.col
 import net.axay.kspigot.gui.GUIType
 import net.axay.kspigot.gui.Slots
 import net.axay.kspigot.gui.kSpigotGUI
-import net.appleogames.autils.challange.onlyCave
-import net.axay.kspigot.extensions.broadcast
+import net.appleogames.autils.challenge.onlyCave
 import net.axay.kspigot.items.*
 import org.bukkit.Material
-import org.bukkit.inventory.ItemFlag
-import org.bukkit.inventory.ItemStack
 
 class SettingsGUI {
     val gui = kSpigotGUI(GUIType.THREE_BY_NINE){
