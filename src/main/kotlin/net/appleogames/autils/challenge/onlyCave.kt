@@ -10,9 +10,8 @@ import net.appleogames.autils.challenge.onlyCave.playerIsInOcian
 import net.appleogames.autils.colors
 import net.appleogames.autils.prfixes
 import net.axay.kspigot.extensions.events.cancel
-import org.bukkit.Location
-import org.bukkit.Material
-import org.bukkit.WeatherType
+import org.bukkit.*
+import org.bukkit.block.Biome
 import org.bukkit.block.Block
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
@@ -36,6 +35,9 @@ object onlyCave{
         var inOcean: Boolean
         var player: Player
         var playerIsInArray: Boolean
+        var locTop: Block
+        var locBot: Block
+        var world: World
         task(
             delay = 20,
             period = 20,
@@ -48,10 +50,13 @@ object onlyCave{
             }else{
                 onlinePlayers.forEach {
                     inOcean = false
-                    if((oceanChack(it.location.block) || oceanChack(Location(it.location.world, it.location.x, it.location.y+1, it.location.z, 0.0F, 0.0F).block)) && it.location.y < 62){
+                    locBot = it.location.block
+                    locTop = Location(it.location.world, it.location.x, it.location.y+1, it.location.z, 0.0F, 0.0F).block
+                    world = it.world
+                    if((locBot.oceanCheck() || locTop.oceanCheck()) && it.location.y < 62 && world.oceanCheck(it.location)){
                         inOcean = true
                         for (y in it.location.y.toInt()..62){
-                            if (!oceanChack(Location(it.location.world, it.location.x, y.toDouble(), it.location.z, 0.0F, 0.0F).block)){
+                            if (!(Location(it.location.world, it.location.x, y.toDouble(), it.location.z, 0.0F, 0.0F).block).oceanCheck()){
                                 inOcean = false
                                 break
                             }
@@ -85,8 +90,8 @@ object onlyCave{
             }
         }
     }
-    fun oceanChack(block: Block): Boolean{
-        val type = block.type
+    fun Block.oceanCheck(): Boolean{
+        val type = this.type
         when (type){
             Material.BUBBLE_COLUMN -> return true
             Material.WATER -> return true
@@ -105,6 +110,22 @@ object onlyCave{
             else -> return false
         }
     }
+    fun World.oceanCheck(location: Location): Boolean{
+        when (this.getBiome(location)){
+            Biome.COLD_OCEAN -> return true
+            Biome.OCEAN -> return true
+            Biome.WARM_OCEAN -> return true
+            Biome.DEEP_OCEAN -> return true
+            Biome.DEEP_COLD_OCEAN -> return true
+            Biome.DEEP_FROZEN_OCEAN -> return true
+            Biome.FROZEN_OCEAN -> return true
+            Biome.LUKEWARM_OCEAN -> return true
+            Biome.DEEP_LUKEWARM_OCEAN -> return true
+            else -> return false
+        }
+
+
+    }
     fun ocian(){
         val playerDeath = listen<PlayerDeathEvent> {if(it.entityType == EntityType.PLAYER){val playerDeath = it.entity.player}}
         val playerQuitEvent = listen<PlayerQuitEvent> {val playerQuitEvent = it.player}
@@ -117,7 +138,11 @@ object onlyCave{
             playerIsInOcian.forEach {
                 it.actionBar("${col("blue")}Du bist in einem Ocean!")
                 it.damage(4.0)
-                if (playerDeath == it || playerQuitEvent == it || !oceanChack(it.location.block) || !oceanChack(Location(it.location.world, it.location.x, it.location.y+1, it.location.z, 0.0F, 0.0F).block)){
+                if (playerDeath == it ||
+                    playerQuitEvent == it ||
+                    !(it.location.block).oceanCheck() ||
+                    !(Location(it.location.world, it.location.x, it.location.y+1, it.location.z, 0.0F, 0.0F).block).oceanCheck())
+                {
                     removePlayer.add(it)
                 }
             }

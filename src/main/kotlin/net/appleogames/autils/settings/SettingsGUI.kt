@@ -11,6 +11,10 @@ import net.axay.kspigot.gui.GUIType
 import net.axay.kspigot.gui.Slots
 import net.axay.kspigot.gui.kSpigotGUI
 import net.appleogames.autils.challenge.onlyCave
+import net.appleogames.autils.prfixes
+import net.appleogames.autils.utils.viewDistance
+import net.axay.kspigot.extensions.broadcast
+import net.axay.kspigot.extensions.server
 import net.axay.kspigot.items.*
 import org.bukkit.Material
 
@@ -65,39 +69,40 @@ class SettingsGUI {
                 it.bukkitEvent.currentItem = SettingsDisplyItem.generel.alowEnd()
             }
 
-            // view Distanz
-            placeholder(Slots.RowTwoSlotSeven, itemStack(Material.SPYGLASS){amount = 1; meta {name = "${col(colors.akzent)}Sichtweite ${col(colors.error)}is temporary disabled!"}})
-            /*button(Slots.RowTwoSlotSeven, SettingsDisplyItem.generel.viewDistanz()) {
+            // view Distance
+            placeholder(Slots.RowTwoSlotSeven, itemStack(Material.SPYGLASS){amount = 1; meta {
+                name = "${col(colors.main)}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}beträgt ${server.viewDistance} Chunks."
+                addLore {+"${col(colors.error)}Verändern, aktuell deaktiviert!" }
+            }})
+            button(Slots.RowTwoSlotSeven, SettingsDisplyItem.generel.viewDistance()) {
                     if (it.bukkitEvent.isShiftClick){
                         if (it.bukkitEvent.isLeftClick) {
                             settings.viewDistance = 12
-                            viewDistanz()
+                            viewDistance()
                             it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistance} Chunks gesetzt.")
                         } else if (it.bukkitEvent.isRightClick) {
                             settings.viewDistance = 6
-                            viewDistanz()
+                            viewDistance()
                             it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistance} Chunks gesetzt.")
                         }
                     }else{
                         if (it.bukkitEvent.isLeftClick){
                             if (settings.viewDistance < 32){
                                 settings.viewDistance++
-                                viewDistanz()
+                                viewDistance()
                                 it.player.sendMessage("${prfixes.plugin}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistance} Chunks erhöht.")
-                                broadcast("${settings.viewDistance}")
                             }
                         }
                         else if (it.bukkitEvent.isRightClick){
                             if (settings.viewDistance > 2){
                                 settings.viewDistance--
-                                viewDistanz()
+                                viewDistance()
                                 it.player.sendMessage("${prefix}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}wurde auf ${settings.viewDistance} Chunks gesenkt.")
-                                broadcast("${settings.viewDistance}")
                             }
                         }
                     }
-                    it.bukkitEvent.currentItem = SettingsDisplyItem.generel.viewDistanz()
-                }*/
+                    it.bukkitEvent.currentItem = SettingsDisplyItem.generel.viewDistance()
+                }
 
             // ------- Back -------
             this.pageChanger(Slots.RowOneSlotNine, SettingsDisplyItem.back, 0){}

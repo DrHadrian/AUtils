@@ -5,6 +5,6 @@ import net.axay.kspigot.extensions.worlds
 import org.bukkit.Bukkit
 import org.bukkit.World
 
-fun viewDistanz(){
+fun viewDistance(){
     worlds.forEach{it.viewDistance = settings.viewDistance}
 }

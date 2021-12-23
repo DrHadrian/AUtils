@@ -56,12 +56,11 @@ object SettingsDisplyItem {
                 }
             }
         }
-        fun viewDistanz(): ItemStack{
+        fun viewDistance(): ItemStack{
             return itemStack(Material.SPYGLASS){
                 amount = 1
                 meta {
                     name = "${col(colors.main)}Die ${col(colors.akzent)}Sichtweite ${col(colors.main)}beträgt $viewDistance Chunks. "
-                    flag(ItemFlag.HIDE_ATTRIBUTES)
                     addLore {
                         +"${col(colors.second)}Left Click to Up"
                         +"${col(colors.second)}Right Click to Down"
